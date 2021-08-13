@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SeenServer.Domain;
 using SeenServer.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -23,36 +24,31 @@ namespace SeenServer.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var games = await _movieService.GetAll();
-            return Ok(games);
+            var movies = await _movieService.GetAll();
+            return Ok(movies);
         }
 
 
-        // GET: api/<MovieController>
-        //[HttpGet]
-        //public IEnumerable<string> Get()
+        //// GET api/<MovieController>/5
+        //[HttpGet("{id}")]
+        //public string Get(int id)
         //{
-        //    return new string[] { "value1", "value2" };
+        //    return "value";
         //}
-
-        // GET api/<MovieController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         // POST api/<MovieController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] Movie movie)
         {
+            var m = await _movieService.InsertAsync(movie);
+            return Ok(m);
         }
 
-        // PUT api/<MovieController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT api/<MovieController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
         // DELETE api/<MovieController>/5
         [HttpDelete("{id}")]

@@ -13,6 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SeenServer.Services.Interfaces;
+using SeenServer.Services;
 
 namespace SeenServer
 {
@@ -30,6 +32,10 @@ namespace SeenServer
         {
             services.AddDbContext<DatabaseContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddControllers();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IMovieService, MovieService>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "SeenServer", Version = "v1" });
@@ -61,3 +67,4 @@ namespace SeenServer
         }
     }
 }
+
