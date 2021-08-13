@@ -30,5 +30,11 @@ namespace SeenServer.Services
 
             return m;
         }
+
+        public async Task DeleteAsync(int movieId)
+        {
+            _unitOfWork.MovieRepo.Delete(movieId);
+            await _unitOfWork.SaveAsync();
+        }
     }
 }

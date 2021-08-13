@@ -51,9 +51,11 @@ namespace SeenServer.Controllers
         //}
 
         // DELETE api/<MovieController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{movieId}")]
+        public async Task<IActionResult> Delete(int movieId)
         {
+            await _movieService.DeleteAsync(movieId);
+            return Ok();
         }
     }
 }

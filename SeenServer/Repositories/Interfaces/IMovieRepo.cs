@@ -5,5 +5,6 @@ namespace SeenServer.Data
 {
     public interface IMovieRepo : IRepoBase<Movie>
     {
+        void Delete(int movieId);
     }
 }
