@@ -28,14 +28,6 @@ namespace SeenServer.Controllers
             return Ok(movies);
         }
 
-
-        //// GET api/<MovieController>/5
-        //[HttpGet("{id}")]
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
         // POST api/<MovieController>
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Movie movie)
@@ -43,12 +35,6 @@ namespace SeenServer.Controllers
             var m = await _movieService.InsertAsync(movie);
             return Ok(m);
         }
-
-        //// PUT api/<MovieController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
 
         // DELETE api/<MovieController>/5
         [HttpDelete("{movieId}")]
